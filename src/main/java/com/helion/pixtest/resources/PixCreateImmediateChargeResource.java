@@ -6,17 +6,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.helion.pixtest.services.PixCreateImmediateChargeService;
+import com.helion.pixtest.services.PixCreateChargeService;
 
 @RestController
 @RequestMapping(value ="/createpix")
 public class PixCreateImmediateChargeResource {
 
 	@Autowired
-	private PixCreateImmediateChargeService service;
+	private PixCreateChargeService service;
 	
 	
 	@GetMapping()
+	public ResponseEntity<String> testPix(){
+		
+		String response = service.pixCreateCharge();
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping(value ="/immediate")
 	public ResponseEntity<String> testPixImmediate(){
 		
 		String response = service.pixCreateImediateCharge();
